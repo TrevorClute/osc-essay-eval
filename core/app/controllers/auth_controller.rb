@@ -20,7 +20,7 @@ class AuthController < ApplicationController
     end
 
     @user.generate_otp!
-    UserMailer.send_otp(@user).deliver_now
+    UserMailer.send_otp(@user).deliver_later
 
     session[:auth_email] = email
     redirect_to verify_path
