@@ -1,0 +1,32 @@
+<div class="container">
+  <% if flash[:alert] %>
+    <div class="alert"><%= flash[:alert] %></div>
+  <% end %>
+
+  <div class="card">
+    <div class="card-header">
+      <h2>OSC Essay Evaluator</h2>
+    </div>
+
+    <%= form_with url: essays_path, multipart: true, local: true do |f| %>
+      <div class="form-group">
+        <label>Select Evaluation Mode</label>
+        <%= f.select :prompt, [["Why would you be a good candidate for the program?", 1], [ "How might you benefit from participation in the program?", 2 ], [ "Give an example of your work on a group project. Describe your role, any successes, and how you handled any frustrations." ,3], [ "Please look at the past student projects in the archives on this website and detail which ones are of interest to you and why.", 4 ]] %>
+      </div>
+
+      <div class="form-group">
+        <label>Paste Essay Text</label>
+        <%= f.text_area :essay_text, rows: 6 %>
+      </div>
+
+      <div class="divider">- OR -</div>
+
+      <div class="form-group">
+        <label>Upload PDF</label>
+        <%= f.file_field :essay_file %>
+      </div>
+
+      <%= f.submit "Analyze Essay", class: "btn", data:{turbo: false} %>
+    <% end %>
+  </div>
+</div>

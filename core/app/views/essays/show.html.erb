@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="card">
+    <% if @result['error'] %>
+      <div class="alert"><%= @result['error'] %></div>
+    <% else %>
+      <div class="card-header"><h2>Evaluation Results</h2></div>
+      
+      <div class="score-box">
+        <span class="score-number"><%= @result['score'] %></span>
+        <small>/ 3 Points</small>
+      </div>
+
+      <div class="score-box">
+        <span>Grammatical Error Rate</span>
+        <span class="score-number"><%= @result['grammar_error_rate'].round(1) %>%</span>
+      </div>
+
+      <div class="score-box">
+        <span>Word Count</span>
+        <span class="score-number"><%= @result['word_count'].round(0) %></span>
+      </div>
+    <% end %>
+    
+    <%= link_to "Start Over", root_path, class: "btn btn-secondary" %>
+  </div>
+</div>
