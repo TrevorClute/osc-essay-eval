@@ -6,7 +6,7 @@ import joblib
 import numpy as np
 from sentence_transformers import SentenceTransformer
 from model.issue_features import get_manual_features  # Import your grammar helper
-from mangum import Mangum
+# from mangum import Mangum
 
 # env_path = Path(__file__).resolve().parent / '.env'
 # load_dotenv(dotenv_path=env_path)
@@ -65,7 +65,7 @@ def analyze_essay():
     })
 
 
-handler = Mangum(app)
+# handler = Mangum(app)
 
 if __name__ == '__main__':
     app.run(port=5001, debug=True)
