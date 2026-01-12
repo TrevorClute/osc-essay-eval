@@ -3,7 +3,7 @@ import language_tool_python
 # 1. INITIALIZE THE TOOL
 # We do this outside the function so we don't reload it 1,000 times.
 # Note: On the first run, this might take a few seconds to download the Java tool.
-tool = language_tool_python.LanguageTool('en-US')
+tool = language_tool_python.LanguageTool('en-US', config={"cacheDir": "/tmp/lt_cache"})
 
 def get_manual_features(text):
     """

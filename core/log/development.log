@@ -6288,3 +6288,8 @@ Processing by EssaysController#new as HTML
 Completed 200 OK in 14ms (Views: 7.1ms | ActiveRecord: 0.4ms (1 query, 0 cached) | GC: 0.0ms)
 
 
+[dotenv] Set [36mFLASK_URL[0m, [36mFLASK_API_KEY[0m, [36mGMAIL_USERNAME[0m, [36mGMAIL_PASSWORD[0m
+[dotenv] Loaded [33m.env[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='HpcEssayEval'*/[0m
+[dotenv] Set [36mFLASK_URL[0m, [36mFLASK_API_KEY[0m, [36mGMAIL_USERNAME[0m, [36mGMAIL_PASSWORD[0m
+[dotenv] Loaded [33m.env[0m
