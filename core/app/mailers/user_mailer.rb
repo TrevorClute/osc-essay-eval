@@ -1,5 +1,5 @@
 class UserMailer < ApplicationMailer
-  default from: 'no-reply@osc.edu'
+  default from: 'oscessayeval@gmail.com'
 
   def send_otp(user)
     @user = user

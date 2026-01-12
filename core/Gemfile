@@ -71,4 +71,6 @@ gem "faraday", "~> 2.14"
 gem "faraday-multipart", "~> 1.2"
 gem "pdf-reader", "~> 2.15"
 gem "dotenv-rails", "~> 3.2"
-gem 'rack-attack'
+gem "rack-attack"
+gem "sendgrid-actionmailer"
+gem "openssl", "~> 3.3.1"
