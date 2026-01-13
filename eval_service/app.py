@@ -8,8 +8,8 @@ from sentence_transformers import SentenceTransformer
 from model.issue_features import get_manual_features  # Import your grammar helper
 from mangum import Mangum
 
-env_path = Path(__file__).resolve().parent / '.env'
-load_dotenv(dotenv_path=env_path)
+# env_path = Path(__file__).resolve().parent / '.env'
+# load_dotenv(dotenv_path=env_path)
 
 app = Flask(__name__)
 INTERNAL_API_KEY = os.getenv('FLASK_API_KEY')
