@@ -6612,3 +6612,114 @@ OpenSSL::SSL::SSLError (SSL_connect returned=1 errno=0 peeraddr=54.90.52.143:443
 app/controllers/auth_controller.rb:23:in `send_code'
 [dotenv] Set [36mFLASK_URL[0m, [36mFLASK_API_KEY[0m, [36mGMAIL_USERNAME[0m, [36mGMAIL_PASSWORD[0m, [36mSEND_GRID_KEY[0m
 [dotenv] Loaded [33m.env[0m
+[dotenv] Set [36mFLASK_URL[0m, [36mFLASK_API_KEY[0m, [36mGMAIL_USERNAME[0m, [36mGMAIL_PASSWORD[0m, [36mSEND_GRID_KEY[0m
+[dotenv] Loaded [33m.env[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='HpcEssayEval'*/[0m
+[dotenv] Set [36mFLASK_URL[0m, [36mFLASK_API_KEY[0m, [36mGMAIL_USERNAME[0m, [36mGMAIL_PASSWORD[0m, [36mSEND_GRID_KEY[0m
+[dotenv] Loaded [33m.env[0m
+Started GET "/" for ::1 at 2026-01-13 00:02:33 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='HpcEssayEval'*/[0m
+Processing by EssaysController#new as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 1 ORDER BY "users"."id" ASC LIMIT 1 /*action='new',application='HpcEssayEval',controller='essays'*/[0m
+  Rendering layout layouts/application.html.erb
+  Rendering essays/new.html.erb within layouts/application
+  Rendered essays/new.html.erb within layouts/application (Duration: 12.0ms | GC: 8.8ms)
+  Rendered layout layouts/application.html.erb (Duration: 18.7ms | GC: 9.6ms)
+Completed 200 OK in 42ms (Views: 20.5ms | ActiveRecord: 1.5ms (1 query, 0 cached) | GC: 9.6ms)
+
+
+Started POST "/essays" for ::1 at 2026-01-13 00:02:37 -0500
+Processing by EssaysController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "prompt"=>"1", "essay_text"=>"asdf", "commit"=>"Analyze Essay"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 1 ORDER BY "users"."id" ASC LIMIT 1 /*action='create',application='HpcEssayEval',controller='essays'*/[0m
+  Rendering layout layouts/application.html.erb
+  Rendering essays/show.html.erb within layouts/application
+  Rendered essays/show.html.erb within layouts/application (Duration: 0.7ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 1.8ms | GC: 0.3ms)
+Completed 200 OK in 13ms (Views: 2.9ms | ActiveRecord: 0.3ms (1 query, 0 cached) | GC: 0.3ms)
+
+
+Started GET "/" for ::1 at 2026-01-13 00:02:37 -0500
+Processing by EssaysController#new as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 1 ORDER BY "users"."id" ASC LIMIT 1 /*action='new',application='HpcEssayEval',controller='essays'*/[0m
+  Rendering layout layouts/application.html.erb
+  Rendering essays/new.html.erb within layouts/application
+  Rendered essays/new.html.erb within layouts/application (Duration: 2.6ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 3.6ms | GC: 0.0ms)
+Completed 200 OK in 10ms (Views: 4.3ms | ActiveRecord: 0.4ms (1 query, 0 cached) | GC: 0.4ms)
+
+
+Started GET "/" for ::1 at 2026-01-13 00:02:42 -0500
+Processing by EssaysController#new as HTML
+Completed 401 Unauthorized in 2ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.5ms)
+
+
+Started GET "/login" for ::1 at 2026-01-13 00:02:42 -0500
+Processing by AuthController#login as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering auth/login.html.erb within layouts/application
+  Rendered auth/login.html.erb within layouts/application (Duration: 3.9ms | GC: 2.7ms)
+  Rendered layout layouts/application.html.erb (Duration: 4.9ms | GC: 3.1ms)
+Completed 200 OK in 8ms (Views: 6.2ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 4.8ms)
+
+
+Started POST "/login" for ::1 at 2026-01-13 00:02:45 -0500
+Processing by AuthController#send_code as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "email"=>"[FILTERED]", "commit"=>"Send Access Code"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'clute.25s@osu.edu' LIMIT 1 /*action='send_code',application='HpcEssayEval',controller='auth'*/[0m
+  ↳ app/controllers/auth_controller.rb:15:in `send_code'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*action='send_code',application='HpcEssayEval',controller='auth'*/[0m
+  ↳ app/models/user.rb:20:in `generate_otp!'
+  [1m[36mUser Update (5.5ms)[0m  [1m[33mUPDATE "users" SET "updated_at" = '2026-01-13 05:02:45.718988', "otp_code" = '757755', "otp_sent_at" = '2026-01-13 05:02:45.718208' WHERE "users"."id" = 1 /*action='send_code',application='HpcEssayEval',controller='auth'*/[0m
+  ↳ app/models/user.rb:20:in `generate_otp!'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT TRANSACTION /*action='send_code',application='HpcEssayEval',controller='auth'*/[0m
+  ↳ app/models/user.rb:20:in `generate_otp!'
+  Rendering layout layouts/mailer.html.erb
+  Rendering user_mailer/send_otp.html.erb within layouts/mailer
+  Rendered user_mailer/send_otp.html.erb within layouts/mailer (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layout layouts/mailer.html.erb (Duration: 0.3ms | GC: 0.0ms)
+UserMailer#send_otp: processed outbound mail in 7.0ms
+Delivered mail 6965d1f5ba7cb_18115c9469288@Trevors-MacBook-Air-3.local.mail (6213.8ms)
+Date: Tue, 13 Jan 2026 00:02:45 -0500
+From: oscessayeval@gmail.com
+To: clute.25s@osu.edu
+Message-ID: <6965d1f5ba7cb_18115c9469288@Trevors-MacBook-Air-3.local.mail>
+Subject: Your OSC Access Code
+MIME-Version: 1.0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<!-- BEGIN app/views/layouts/mailer.html.erb
+--><!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <style>
+      /* Email styles need to be inline */
+    </style>
+  </head>
+
+  <body>
+    <!-- BEGIN app/views/user_mailer/send_otp.html.erb
+--><p>Hello,</p>
+<p>Your access code is: <strong>757755</strong></p>
+<p>This code expires in 10 minutes.</p>
+<!-- END app/views/user_mailer/send_otp.html.erb -->
+  </body>
+</html>
+<!-- END app/views/layouts/mailer.html.erb -->
+Redirected to http://localhost:3000/verify
+↳ app/controllers/auth_controller.rb:26:in `send_code'
+Completed 302 Found in 6274ms (ActiveRecord: 6.5ms (2 queries, 0 cached) | GC: 18.1ms)
+
+
+Started GET "/verify" for ::1 at 2026-01-13 00:02:51 -0500
+Processing by AuthController#verify as TURBO_STREAM
+  Rendering layout layouts/application.html.erb
+  Rendering auth/verify.html.erb within layouts/application
+  Rendered auth/verify.html.erb within layouts/application (Duration: 3.2ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 4.0ms | GC: 0.0ms)
+Completed 200 OK in 8ms (Views: 4.8ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
