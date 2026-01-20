@@ -6723,3 +6723,259 @@ Processing by AuthController#verify as TURBO_STREAM
 Completed 200 OK in 8ms (Views: 4.8ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
 
 
+[dotenv] Set [36mFLASK_URL[0m, [36mFLASK_API_KEY[0m, [36mGMAIL_USERNAME[0m, [36mGMAIL_PASSWORD[0m, [36mSEND_GRID_KEY[0m
+[dotenv] Loaded [33m.env[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='HpcEssayEval'*/[0m
+[dotenv] Set [36mFLASK_URL[0m, [36mFLASK_API_KEY[0m, [36mGMAIL_USERNAME[0m, [36mGMAIL_PASSWORD[0m, [36mSEND_GRID_KEY[0m
+[dotenv] Loaded [33m.env[0m
+Started GET "/" for ::1 at 2026-01-13 13:50:44 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='HpcEssayEval'*/[0m
+Processing by EssaysController#new as HTML
+Completed 401 Unauthorized in 8ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/login" for ::1 at 2026-01-13 13:50:44 -0500
+Processing by AuthController#login as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering auth/login.html.erb within layouts/application
+  Rendered auth/login.html.erb within layouts/application (Duration: 4.4ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 20.7ms | GC: 10.0ms)
+Completed 200 OK in 25ms (Views: 22.5ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 10.0ms)
+
+
+Started POST "/login" for ::1 at 2026-01-13 13:50:48 -0500
+Processing by AuthController#send_code as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "email"=>"[FILTERED]", "commit"=>"Send Access Code"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'clute.25s@osu.edu' LIMIT 1 /*action='send_code',application='HpcEssayEval',controller='auth'*/[0m
+  ↳ app/controllers/auth_controller.rb:15:in `send_code'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*action='send_code',application='HpcEssayEval',controller='auth'*/[0m
+  ↳ app/models/user.rb:20:in `generate_otp!'
+  [1m[36mUser Update (1.3ms)[0m  [1m[33mUPDATE "users" SET "updated_at" = '2026-01-13 18:50:48.752571', "otp_code" = '955791', "otp_sent_at" = '2026-01-13 18:50:48.752254' WHERE "users"."id" = 1 /*action='send_code',application='HpcEssayEval',controller='auth'*/[0m
+  ↳ app/models/user.rb:20:in `generate_otp!'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT TRANSACTION /*action='send_code',application='HpcEssayEval',controller='auth'*/[0m
+  ↳ app/models/user.rb:20:in `generate_otp!'
+  Rendering layout layouts/mailer.html.erb
+  Rendering user_mailer/send_otp.html.erb within layouts/mailer
+  Rendered user_mailer/send_otp.html.erb within layouts/mailer (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layout layouts/mailer.html.erb (Duration: 0.8ms | GC: 0.5ms)
+UserMailer#send_otp: processed outbound mail in 11.9ms
+Delivered mail 69669408c0c00_35e57b70127b9@Trevors-MacBook-Air-3.local.mail (1604.4ms)
+Date: Tue, 13 Jan 2026 13:50:48 -0500
+From: oscessayeval@gmail.com
+To: clute.25s@osu.edu
+Message-ID: <69669408c0c00_35e57b70127b9@Trevors-MacBook-Air-3.local.mail>
+Subject: Your OSC Access Code
+MIME-Version: 1.0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<!-- BEGIN app/views/layouts/mailer.html.erb
+--><!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <style>
+      /* Email styles need to be inline */
+    </style>
+  </head>
+
+  <body>
+    <!-- BEGIN app/views/user_mailer/send_otp.html.erb
+--><p>Hello,</p>
+<p>Your access code is: <strong>955791</strong></p>
+<p>This code expires in 10 minutes.</p>
+<!-- END app/views/user_mailer/send_otp.html.erb -->
+  </body>
+</html>
+<!-- END app/views/layouts/mailer.html.erb -->
+Redirected to http://localhost:3000/verify
+↳ app/controllers/auth_controller.rb:26:in `send_code'
+Completed 302 Found in 1661ms (ActiveRecord: 3.5ms (2 queries, 0 cached) | GC: 22.7ms)
+
+
+Started GET "/verify" for ::1 at 2026-01-13 13:50:50 -0500
+Processing by AuthController#verify as TURBO_STREAM
+  Rendering layout layouts/application.html.erb
+  Rendering auth/verify.html.erb within layouts/application
+  Rendered auth/verify.html.erb within layouts/application (Duration: 5.0ms | GC: 3.5ms)
+  Rendered layout layouts/application.html.erb (Duration: 6.7ms | GC: 4.6ms)
+Completed 200 OK in 13ms (Views: 10.0ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 8.6ms)
+
+
+Started POST "/verify" for ::1 at 2026-01-13 13:55:19 -0500
+Processing by AuthController#verify_code as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "otp_code"=>"[FILTERED]", "commit"=>"Verify & Login"}
+  [1m[36mUser Load (4.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'clute.25s@osu.edu' LIMIT 1 /*action='verify_code',application='HpcEssayEval',controller='auth'*/[0m
+  ↳ app/controllers/auth_controller.rb:38:in `verify_code'
+Redirected to http://localhost:3000/
+↳ app/controllers/auth_controller.rb:43:in `verify_code'
+Completed 302 Found in 15ms (ActiveRecord: 4.3ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2026-01-13 13:55:19 -0500
+Processing by EssaysController#new as TURBO_STREAM
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 1 ORDER BY "users"."id" ASC LIMIT 1 /*action='new',application='HpcEssayEval',controller='essays'*/[0m
+  Rendering layout layouts/application.html.erb
+  Rendering essays/new.html.erb within layouts/application
+  Rendered essays/new.html.erb within layouts/application (Duration: 15.5ms | GC: 0.5ms)
+  Rendered layout layouts/application.html.erb (Duration: 16.4ms | GC: 0.5ms)
+Completed 200 OK in 23ms (Views: 18.4ms | ActiveRecord: 0.1ms (1 query, 0 cached) | GC: 1.7ms)
+
+
+Started POST "/essays" for ::1 at 2026-01-13 13:55:26 -0500
+Processing by EssaysController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "prompt"=>"1", "essay_text"=>"hjklh", "commit"=>"Analyze Essay"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 1 ORDER BY "users"."id" ASC LIMIT 1 /*action='create',application='HpcEssayEval',controller='essays'*/[0m
+  Rendering layout layouts/application.html.erb
+  Rendering essays/show.html.erb within layouts/application
+  Rendered essays/show.html.erb within layouts/application (Duration: 1.0ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 2.1ms | GC: 0.5ms)
+Completed 200 OK in 10ms (Views: 3.1ms | ActiveRecord: 0.1ms (1 query, 0 cached) | GC: 0.8ms)
+
+
+Started GET "/" for ::1 at 2026-01-13 13:55:27 -0500
+Processing by EssaysController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 1 ORDER BY "users"."id" ASC LIMIT 1 /*action='new',application='HpcEssayEval',controller='essays'*/[0m
+  Rendering layout layouts/application.html.erb
+  Rendering essays/new.html.erb within layouts/application
+  Rendered essays/new.html.erb within layouts/application (Duration: 3.9ms | GC: 1.7ms)
+  Rendered layout layouts/application.html.erb (Duration: 5.3ms | GC: 2.6ms)
+Completed 200 OK in 12ms (Views: 5.8ms | ActiveRecord: 0.2ms (1 query, 0 cached) | GC: 3.5ms)
+
+
+Started POST "/essays" for ::1 at 2026-01-13 13:55:52 -0500
+Processing by EssaysController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "prompt"=>"1", "essay_text"=>"asdf", "commit"=>"Analyze Essay"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 1 ORDER BY "users"."id" ASC LIMIT 1 /*action='create',application='HpcEssayEval',controller='essays'*/[0m
+  Rendering layout layouts/application.html.erb
+  Rendering essays/show.html.erb within layouts/application
+  Rendered essays/show.html.erb within layouts/application (Duration: 0.3ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 1.3ms | GC: 0.0ms)
+Completed 200 OK in 15ms (Views: 2.1ms | ActiveRecord: 0.6ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2026-01-13 13:55:53 -0500
+Processing by EssaysController#new as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 1 ORDER BY "users"."id" ASC LIMIT 1 /*action='new',application='HpcEssayEval',controller='essays'*/[0m
+  Rendering layout layouts/application.html.erb
+  Rendering essays/new.html.erb within layouts/application
+  Rendered essays/new.html.erb within layouts/application (Duration: 3.8ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 5.0ms | GC: 0.0ms)
+Completed 200 OK in 13ms (Views: 6.0ms | ActiveRecord: 0.4ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/essays" for ::1 at 2026-01-13 13:55:54 -0500
+Processing by EssaysController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "prompt"=>"1", "essay_text"=>"asdf", "commit"=>"Analyze Essay"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 1 ORDER BY "users"."id" ASC LIMIT 1 /*action='create',application='HpcEssayEval',controller='essays'*/[0m
+  Rendering layout layouts/application.html.erb
+  Rendering essays/show.html.erb within layouts/application
+  Rendered essays/show.html.erb within layouts/application (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 0.7ms | GC: 0.0ms)
+Completed 200 OK in 42ms (Views: 1.2ms | ActiveRecord: 0.4ms (1 query, 0 cached) | GC: 32.3ms)
+
+
+Started GET "/" for ::1 at 2026-01-13 13:55:55 -0500
+Processing by EssaysController#new as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 1 ORDER BY "users"."id" ASC LIMIT 1 /*action='new',application='HpcEssayEval',controller='essays'*/[0m
+  Rendering layout layouts/application.html.erb
+  Rendering essays/new.html.erb within layouts/application
+  Rendered essays/new.html.erb within layouts/application (Duration: 1.9ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 3.0ms | GC: 0.0ms)
+Completed 200 OK in 12ms (Views: 4.0ms | ActiveRecord: 0.4ms (1 query, 0 cached) | GC: 1.6ms)
+
+
+[dotenv] Set [36mFLASK_URL[0m, [36mFLASK_API_KEY[0m, [36mGMAIL_USERNAME[0m, [36mGMAIL_PASSWORD[0m, [36mSEND_GRID_KEY[0m
+[dotenv] Loaded [33m.env[0m
+Started GET "/" for ::1 at 2026-01-13 13:56:10 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='HpcEssayEval'*/[0m
+Processing by EssaysController#new as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 1 ORDER BY "users"."id" ASC LIMIT 1 /*action='new',application='HpcEssayEval',controller='essays'*/[0m
+  Rendering layout layouts/application.html.erb
+  Rendering essays/new.html.erb within layouts/application
+  Rendered essays/new.html.erb within layouts/application (Duration: 3.3ms | GC: 0.3ms)
+  Rendered layout layouts/application.html.erb (Duration: 10.7ms | GC: 1.2ms)
+Completed 200 OK in 40ms (Views: 12.6ms | ActiveRecord: 1.1ms (1 query, 0 cached) | GC: 9.1ms)
+
+
+Started POST "/essays" for ::1 at 2026-01-13 13:56:12 -0500
+Processing by EssaysController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "prompt"=>"1", "essay_text"=>"asdf", "commit"=>"Analyze Essay"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 1 ORDER BY "users"."id" ASC LIMIT 1 /*action='create',application='HpcEssayEval',controller='essays'*/[0m
+  Rendering layout layouts/application.html.erb
+  Rendering essays/show.html.erb within layouts/application
+  Rendered essays/show.html.erb within layouts/application (Duration: 2.5ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 4.4ms | GC: 0.0ms)
+Completed 200 OK in 6234ms (Views: 11.1ms | ActiveRecord: 0.4ms (1 query, 0 cached) | GC: 0.8ms)
+
+
+Started GET "/" for ::1 at 2026-01-13 13:56:25 -0500
+Processing by EssaysController#new as HTML
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 1 ORDER BY "users"."id" ASC LIMIT 1 /*action='new',application='HpcEssayEval',controller='essays'*/[0m
+  Rendering layout layouts/application.html.erb
+  Rendering essays/new.html.erb within layouts/application
+  Rendered essays/new.html.erb within layouts/application (Duration: 8.0ms | GC: 6.5ms)
+  Rendered layout layouts/application.html.erb (Duration: 12.3ms | GC: 10.1ms)
+Completed 200 OK in 37ms (Views: 15.1ms | ActiveRecord: 0.8ms (1 query, 0 cached) | GC: 22.5ms)
+
+
+Started POST "/essays" for ::1 at 2026-01-13 13:56:31 -0500
+Processing by EssaysController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "prompt"=>"1", "essay_text"=>"zXCZXCZXCcdsd", "commit"=>"Analyze Essay"}
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 1 ORDER BY "users"."id" ASC LIMIT 1 /*action='create',application='HpcEssayEval',controller='essays'*/[0m
+  Rendering layout layouts/application.html.erb
+  Rendering essays/show.html.erb within layouts/application
+  Rendered essays/show.html.erb within layouts/application (Duration: 0.4ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 8.8ms | GC: 6.4ms)
+Completed 200 OK in 474ms (Views: 9.9ms | ActiveRecord: 1.1ms (1 query, 0 cached) | GC: 22.2ms)
+
+
+Started GET "/" for ::1 at 2026-01-13 13:56:31 -0500
+Processing by EssaysController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 1 ORDER BY "users"."id" ASC LIMIT 1 /*action='new',application='HpcEssayEval',controller='essays'*/[0m
+  Rendering layout layouts/application.html.erb
+  Rendering essays/new.html.erb within layouts/application
+  Rendered essays/new.html.erb within layouts/application (Duration: 1.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 1.8ms | GC: 0.0ms)
+Completed 200 OK in 20ms (Views: 4.9ms | ActiveRecord: 0.2ms (1 query, 0 cached) | GC: 12.9ms)
+
+
+Started POST "/essays" for ::1 at 2026-01-13 13:56:39 -0500
+Processing by EssaysController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "prompt"=>"1", "essay_text"=>"fererfefffefefasdfasdfasdfa", "commit"=>"Analyze Essay"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 1 ORDER BY "users"."id" ASC LIMIT 1 /*action='create',application='HpcEssayEval',controller='essays'*/[0m
+  Rendering layout layouts/application.html.erb
+  Rendering essays/show.html.erb within layouts/application
+  Rendered essays/show.html.erb within layouts/application (Duration: 0.2ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 1.3ms | GC: 0.0ms)
+Completed 200 OK in 746ms (Views: 2.2ms | ActiveRecord: 0.2ms (1 query, 0 cached) | GC: 1.6ms)
+
+
+Started GET "/" for ::1 at 2026-01-13 13:56:40 -0500
+Processing by EssaysController#new as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 1 ORDER BY "users"."id" ASC LIMIT 1 /*action='new',application='HpcEssayEval',controller='essays'*/[0m
+  Rendering layout layouts/application.html.erb
+  Rendering essays/new.html.erb within layouts/application
+  Rendered essays/new.html.erb within layouts/application (Duration: 1.7ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 2.4ms | GC: 0.0ms)
+Completed 200 OK in 11ms (Views: 3.1ms | ActiveRecord: 0.4ms (1 query, 0 cached) | GC: 0.3ms)
+
+
+[dotenv] Set [36mFLASK_URL[0m, [36mFLASK_API_KEY[0m, [36mGMAIL_USERNAME[0m, [36mGMAIL_PASSWORD[0m, [36mSEND_GRID_KEY[0m
+[dotenv] Loaded [33m.env[0m
+Started GET "/" for ::1 at 2026-01-19 23:20:55 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='HpcEssayEval'*/[0m
+Processing by EssaysController#new as HTML
+Completed 401 Unauthorized in 6ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/login" for ::1 at 2026-01-19 23:20:55 -0500
+Processing by AuthController#login as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering auth/login.html.erb within layouts/application
+  Rendered auth/login.html.erb within layouts/application (Duration: 3.9ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 21.1ms | GC: 10.7ms)
+Completed 200 OK in 25ms (Views: 23.0ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 10.7ms)
+
+

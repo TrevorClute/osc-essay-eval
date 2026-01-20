@@ -13,7 +13,7 @@ from issue_features import get_manual_features
 def train():
     embedder = SentenceTransformer('all-mpnet-base-v2')
 
-    data_path = '../data/essays.csv'
+    data_path = '../data/new.csv'
     df = pd.read_csv(data_path)
 
     combined_text = [
